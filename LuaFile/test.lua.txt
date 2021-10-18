@@ -1,0 +1,6 @@
+local Test = {
+    a = 10,
+    b = "msg",
+}
+
+return Test

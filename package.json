@@ -1,0 +1,8 @@
+{
+  "name": "com.zjc.nodegraph",
+  "displayName": "NodeGraph",
+  "description": "\u53ef\u89c6\u5316\u56fe\u5f62\u5de5\u5177",
+  "version": "0.0.1",
+  "unity": "2019.2",
+  "type": "library"
+}

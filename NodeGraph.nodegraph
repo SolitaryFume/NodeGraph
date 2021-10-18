@@ -1,0 +1,22 @@
+{
+    "assetGuide": "a7acf4dc54ec7c54f88cddddc78b7517",
+    "nodes": [
+        {
+            "type": "UnityLib.Graph.LuaForAsset",
+            "data": "{\n    \"MonoBehaviour\": {\n        \"m_Enabled\": true,\n        \"m_EditorHideFlags\": 0,\n        \"m_Name\": \"\",\n        \"m_EditorClassIdentifier\": \"UnityLib.Graph:UnityLib.Graph:LuaForAsset\",\n        \"m_guid\": \"44f283ed-2407-4d3e-ba41-584d4b3de01c\",\n        \"m_position\": {\n            \"x\": 199.0,\n            \"y\": 262.0\n        },\n        \"luaFile\": {\n            \"fileID\": 4900000,\n            \"guid\": \"d205ae0c493ecbf40b4e927338ac2027\",\n            \"type\": 3\n        }\n    }\n}"
+        },
+        {
+            "type": "UnityLib.Graph.NumberValue",
+            "data": "{\n    \"MonoBehaviour\": {\n        \"m_Enabled\": true,\n        \"m_EditorHideFlags\": 0,\n        \"m_Name\": \"\",\n        \"m_EditorClassIdentifier\": \"\",\n        \"m_guid\": \"720acca5-2ae8-4e8b-ba39-3cc59784a67e\",\n        \"m_position\": {\n            \"x\": 738.0,\n            \"y\": 283.0\n        },\n        \"value\": 0\n    }\n}"
+        }
+    ],
+    "links": [
+        {
+            "m_guid": "1dcf998b-02de-449f-ab52-ac3972004d4c",
+            "startNode": "44f283ed-2407-4d3e-ba41-584d4b3de01c",
+            "endNode": "720acca5-2ae8-4e8b-ba39-3cc59784a67e",
+            "inputPort": "value",
+            "outputPort": "a[System.Int64];"
+        }
+    ]
+}
