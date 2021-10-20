@@ -21,6 +21,7 @@ namespace UnityLib.GraphEditor
 
     public class NodeView : Node
     {
+
         protected new NodeData userData;
         protected readonly SerializedObject serializedObject;
 
@@ -63,14 +64,18 @@ namespace UnityLib.GraphEditor
                 if (input != null)
                 {
                     var port = Port.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, field.FieldType);
-                    port.portName = string.IsNullOrEmpty(input.portName) ? field.Name : input.portName;
+                    var name = string.IsNullOrEmpty(input.portName) ? field.Name : input.portName;
+                    port.portName = name;
+                    port.name = name;
                     this.inputContainer.Add(port);
                 }
 
                 if (output != null)
                 {
                     var port = Port.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, field.FieldType);
-                    port.portName = string.IsNullOrEmpty(output.portName) ? field.Name : output.portName;
+                    var name = string.IsNullOrEmpty(output.portName) ? field.Name : output.portName;
+                    port.portName = name;
+                    port.name = name;
                     this.inputContainer.Add(port);
                 }
             }

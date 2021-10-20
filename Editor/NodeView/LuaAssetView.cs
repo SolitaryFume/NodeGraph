@@ -57,7 +57,9 @@ namespace UnityLib.GraphEditor
             {
                 var value = table[key];
                 var port = Port.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, value.GetType());
-                port.portName = $"{key.ToString()}[{value.GetType()}];";
+                var name = $"{key.ToString()}[{value.GetType()}]";
+                port.portName = name;
+                port.name = name;
                 this.outputContainer.Insert(0,port);
                 keys.Add(port);
             }

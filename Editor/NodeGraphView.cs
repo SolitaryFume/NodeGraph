@@ -61,6 +61,7 @@ namespace UnityLib.GraphEditor
                 SearchWindow.Open<NodeGraphMenuWindowProvider>(searchWindowContext, menuProvider);
             };
 
+            this.SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
@@ -88,15 +89,23 @@ namespace UnityLib.GraphEditor
 
             var startNode = GetNodeByGuid(link.startNode);
             var endNode = GetNodeByGuid(link.endNode);
-            var inputPort = endNode.inputContainer.Query<Port>(link.inputPort);
+            Port inputPort = endNode.inputContainer.Q<Port>(link.inputPort);
             var outPort = startNode.outputContainer.Q<Port>(link.outputPort);
-
-            var edge = new Edge()
-            {
-                input = inputPort,
-                output = outPort,
-            };
+            
+            var edge = ConnectPorts(outPort, inputPort);
             this.Add(edge);
+        }
+
+        private static Edge ConnectPorts(Port output,Port input)
+        {
+            
+            var edge = new Edge() {
+                input = input, 
+                output = output
+            };
+            edge.input.Connect(edge);
+            edge.output.Connect(edge);
+            return edge;
         }
 
         private void Toolbar()
