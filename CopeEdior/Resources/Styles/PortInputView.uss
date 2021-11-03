@@ -1,0 +1,35 @@
+﻿PortInputView {
+    width: 200px;
+    height: 30px;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: absolute;
+    left:-200px;
+}
+
+PortInputView > #container {
+    background-color: rgba(63, 63, 63, 0.8);
+    flex-direction: row;
+    align-items: center;
+    padding-left: 8px;
+    margin-right: 12px;
+    border-left-width: 1px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-color: rgba(25, 25, 25, 0.8);
+    border-radius: 2px;
+}
+
+PortInputView > #container > #disabledOverlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(32, 32, 32, 0.0);
+}
+
+PortInputView.disabled > #container > #disabledOverlay {
+    background-color: rgba(32, 32, 32, 0.75);
+}

@@ -4,7 +4,7 @@ namespace UnityLib.Graph
     [NodeMenu("ToNumber")]
     public class ToNumber : NodeData
     { 
-        [Input][HideInInspector] public string @in;
-        [Output] [HideInInspector] public long @out;
+        [Input][HideInInspector] public string In;
+        [Output] [HideInInspector] public long Out;
     }
 }

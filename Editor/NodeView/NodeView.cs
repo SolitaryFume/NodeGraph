@@ -21,8 +21,7 @@ namespace UnityLib.GraphEditor
 
     public class NodeView : Node
     {
-
-        protected new NodeData userData;
+        public new NodeData userData { get; set; }
         protected readonly SerializedObject serializedObject;
 
         public NodeView(NodeData data)
@@ -76,9 +75,10 @@ namespace UnityLib.GraphEditor
                     var name = string.IsNullOrEmpty(output.portName) ? field.Name : output.portName;
                     port.portName = name;
                     port.name = name;
-                    this.inputContainer.Add(port);
+                    this.outputContainer.Add(port);
                 }
             }
+            RefreshPorts();
         }
 
         protected virtual void OnInspectorGUI()
@@ -95,7 +95,7 @@ namespace UnityLib.GraphEditor
         public override void SetPosition(Rect newPos)
         {
             base.SetPosition(newPos);
-            if(userData!=null)
+            if(userData != null)
             {
                 userData.Position = newPos.position;
             }

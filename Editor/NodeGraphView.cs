@@ -87,13 +87,30 @@ namespace UnityLib.GraphEditor
             if (link == null)
                 throw new ArgumentNullException(nameof(link));
 
-            var startNode = GetNodeByGuid(link.startNode);
-            var endNode = GetNodeByGuid(link.endNode);
+            NodeView startNode = GetNodeByGuid(link.startNode);
+            NodeView endNode = GetNodeByGuid(link.endNode);
             Port inputPort = endNode.inputContainer.Q<Port>(link.inputPort);
-            var outPort = startNode.outputContainer.Q<Port>(link.outputPort);
-            
+            if (inputPort == null)
+                throw new Exception($"{endNode.userData.GetType()}: No InputPort :{link.inputPort}");
+
+            Port outPort = startNode.outputContainer.Q<Port>(link.outputPort);
+            if (outPort == null)
+            {
+                throw new Exception($"{startNode.userData.GetType()}: No OutPort :{link.outputPort}");
+            }
             var edge = ConnectPorts(outPort, inputPort);
             this.Add(edge);
+        }
+
+        public new NodeView GetNodeByGuid(string guid)
+        {
+            var node = base.GetNodeByGuid(guid);
+            if (node == null)
+                return null;
+            var result = node as NodeView;
+            if (result == null)
+                throw new TypeAccessException("node type error !");
+            return result;
         }
 
         private static Edge ConnectPorts(Port output,Port input)
@@ -117,9 +134,21 @@ namespace UnityLib.GraphEditor
                 {
                     Save();
                 }
+                if (GUILayout.Button("执行", GUILayout.Width(80)))
+                {
+                    Execute();
+                }
                 GUILayout.EndHorizontal();
             });
             Add(toolbar);
+        }
+
+        private void Execute()
+        {
+            var head = graphData.NodeDic.Values.OfType<Flow_Head>().FirstOrDefault();
+            if (head == null)
+                throw new Exception("没有找到头节点");
+            var headNode = GetNodeByGuid(head.guid);
         }
 
         private bool OnMenuSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
@@ -136,6 +165,8 @@ namespace UnityLib.GraphEditor
 
         private void AddNode(NodeData nodeData)
         {
+            if(nodeData==null)
+                throw new ArgumentNullException(nameof(nodeData));
             if (!noedViewMap.TryGetValue(nodeData.GetType(), out var nodeViewTy))
             {
                 nodeViewTy = typeof(NodeView);

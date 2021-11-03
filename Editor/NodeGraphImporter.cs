@@ -1,17 +1,17 @@
 ﻿using UnityLib.Graph;
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.Experimental.AssetImporters;
+
 using System.IO;
 using System.Text;
 
 namespace UnityLib.GraphEditor
 {
-    [ScriptedImporter(31, Extension, 3)]
-    public class NodeGraphImporter: ScriptedImporter
+    [UnityEditor.AssetImporters.ScriptedImporter(31, Extension, 3)]
+    public class NodeGraphImporter: UnityEditor.AssetImporters.ScriptedImporter
     {
         public const string Extension = "nodegraph";
-        public override void OnImportAsset(AssetImportContext ctx)
+        public override void OnImportAsset(UnityEditor.AssetImporters.AssetImportContext ctx)
         {
             var path = ctx.assetPath;
             var textData = File.ReadAllText(path,Encoding.UTF8);
@@ -29,7 +29,7 @@ namespace UnityLib.GraphEditor
     }
 
     [CustomEditor(typeof(NodeGraphImporter))]
-    public class NodeGraphImporterEditor:ScriptedImporterEditor
+    public class NodeGraphImporterEditor:UnityEditor.AssetImporters.ScriptedImporterEditor
     {
         public override void OnInspectorGUI()
         {

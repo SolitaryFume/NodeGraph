@@ -1,6 +1,9 @@
 local Test = {
     a = 10,
     b = "msg",
+    c = true,
+    d = function() end,
+    e = {},
 }
 
 return Test
